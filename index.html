@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Konversi</title>
+
+    <!-- add icon link -->
+    <link rel="icon" href="img/kalku-removebg-preview.png" type="image/x-icon" />
+    <style>
+        body {
+            background-image: url(img/sky.jpg);
+            color: rgb(12, 12, 12);
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height:100vh;
+        }
+
+        .container {
+            margin-top: 20px;
+            background-color: #f6f6f690;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        
+
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #008CBA;
+            /* Medium Sea Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0069D9;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #explanation {
+            background-color: #f2f3f794;
+            /* Cornflower Blue */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pertama">
+        <h3>Welcome To My Website</h3>
+        </div>
+        <br>
+    <div class="container">
+        <h1>Konversi Suhu</h1>
+        <h3 style=" margin-left: 10px;">Masukkan suhu derajat Celsius (°C) ke kotak dibawah,<br> lalu klik tombol
+            Konversi untuk mendapatkan hasil konversi dalam bentuk Fahrenheit (°F).</h3>
+
+        <label for="celsius">Celsius (°C):</label>
+        <input type="number" id="celsius" value="0">
+        <button id="convert">Konversi</button>
+        <button id="reset">Reset</button>
+        <button id="reverse">Reverse</button>
+        <br><br>
+        <label for="fahrenheit">Fahrenheit (°F):</label>
+        <input type="number" id="fahrenheit" readonly>
+
+        <div id="result"></div>
+    </div>
+
+    <div id="explanation">
+        <h3 style="margin-left: 110px;">Cara Konversi Dari Celsius (°C) ke Fahrenheit (°F)</h3>
+        <p>Suhu S dalam derajat Fahrenheit (°F) sama dengan suhu S dalam derajat Celsius (°C) kali 9/5 tambah 32.</p>
+        <p>S(°F) = (S(°C) × 9/5) + 32</p>
+        <p>atau</p>
+        <p>S(°F) = (S(°C) × 1.8) + 32</p>
+    </div>
+
+    <script>
+        const celsiusInput = document.getElementById('celsius');
+        const fahrenheitInput = document.getElementById('fahrenheit');
+        const convertButton = document.getElementById('convert');
+        const resetButton = document.getElementById('reset');
+        const reverseButton = document.getElementById('reverse');
+        const resultDiv = document.getElementById('result');
+
+        convertButton.addEventListener('click', () => {
+            const celsius = parseFloat(celsiusInput.value);
+            const fahrenheit = (celsius * 9 / 5) + 32;
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+            resultDiv.textContent = `Hasil Konversi: ${fahrenheit.toFixed(2)}°F`;
+        });
+
+        resetButton.addEventListener('click', () => {
+            celsiusInput.value = 0;
+            fahrenheitInput.value = '';
+            resultDiv.textContent = '';
+        });
+
+        reverseButton.addEventListener('click', () => {
+            const fahrenheit = parseFloat(fahrenheitInput.value);
+            const celsius = (fahrenheit - 32) * 5 / 9;
+            celsiusInput.value = celsius.toFixed(2);
+            resultDiv.textContent = `Hasil Konversi: ${celsius.toFixed(2)}°C`;
+        });
+    </script>
+</body>
+
+</html>
